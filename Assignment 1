@@ -1,0 +1,170 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOkWExrOEdfuT74RVmpg5yO",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/dcherechukin/Mindbox_intern_vacancy_assignment/blob/main/Assignment%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 59,
+      "metadata": {
+        "id": "QTPdG2yVKEsJ"
+      },
+      "outputs": [],
+      "source": [
+        "def number_in_groups(n_customers):\n",
+        "    result = {} # создаем словарь чтобы записывать значения. Ключ - группа, значение - число элементов в группе\n",
+        "    for x in range(0, int(n_customers)):\n",
+        "        sum_of_digits = sum(map(int,str(x)))\n",
+        "        if sum_of_digits in result.keys(): # считаем сумму цифр числа и сравниваем с ключами словаря\n",
+        "            result[sum_of_digits] += 1  # если такое значение есть среди ключей - увеличиваем на 1 \n",
+        "        else:\n",
+        "            result[sum_of_digits] = 1 # если такого значения нет среди ключей - создаём новую запись\n",
+        "    return result # возвращаем словарь"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "number_in_groups(input('n_customers = '))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2nkIBZqMLqzX",
+        "outputId": "d9a262f5-bed0-435d-950b-b9f3d4b1c02f"
+      },
+      "execution_count": 60,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "n_customers = 123\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{0: 1,\n",
+              " 1: 3,\n",
+              " 2: 5,\n",
+              " 3: 7,\n",
+              " 4: 8,\n",
+              " 5: 9,\n",
+              " 6: 9,\n",
+              " 7: 10,\n",
+              " 8: 11,\n",
+              " 9: 12,\n",
+              " 10: 11,\n",
+              " 11: 9,\n",
+              " 12: 7,\n",
+              " 13: 6,\n",
+              " 14: 5,\n",
+              " 15: 4,\n",
+              " 16: 3,\n",
+              " 17: 2,\n",
+              " 18: 1}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 60
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def number_in_groups_mith_1_id(n_customers, n_first_id):\n",
+        "    result = {} # создаем словарь чтобы записывать значения. Ключ - группа, значение - число элементов в группе\n",
+        "    for x in range(int(n_first_id), int(n_customers) + int(n_first_id)): # цикл по всем значения id\n",
+        "        sum_of_digits = sum(map(int,str(x)))\n",
+        "        if sum_of_digits in result.keys(): # считаем сумму цифр числа и сравниваем с ключами словаря\n",
+        "            result[sum_of_digits] += 1 # если такое значение есть среди ключей - увеличиваем на 1\n",
+        "        else:\n",
+        "            result[sum_of_digits] = 1 # если такого значения нет среди ключей - создаём новую запись\n",
+        "    return dict(sorted(result.items())) # возвращаем отсортированный по ключам словарь "
+      ],
+      "metadata": {
+        "id": "0ujvPH0NT-Ff"
+      },
+      "execution_count": 61,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "number_in_groups_mith_1_id(input('n_customers = '), input('n_first_id = '))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PuQhlRyhUba_",
+        "outputId": "8533e983-98a7-4e80-f8bd-7325c932266c"
+      },
+      "execution_count": 62,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "n_customers = 123\n",
+            "n_first_id = 15\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{1: 1,\n",
+              " 2: 3,\n",
+              " 3: 5,\n",
+              " 4: 7,\n",
+              " 5: 8,\n",
+              " 6: 10,\n",
+              " 7: 11,\n",
+              " 8: 12,\n",
+              " 9: 13,\n",
+              " 10: 13,\n",
+              " 11: 11,\n",
+              " 12: 8,\n",
+              " 13: 6,\n",
+              " 14: 5,\n",
+              " 15: 4,\n",
+              " 16: 3,\n",
+              " 17: 2,\n",
+              " 18: 1}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 62
+        }
+      ]
+    }
+  ]
+}
